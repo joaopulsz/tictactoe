@@ -13,6 +13,8 @@ h1 {
 .square {
     width: auto;
     height: auto;
+    text-align: center;
+    font-size: 9em;
 }
 
 .top {
