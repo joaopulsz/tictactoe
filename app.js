@@ -13,35 +13,40 @@ const makeAMove = (square) => {
     }
 
     if (squares[0].innerText === 'x' && squares[1].innerText === 'x' && squares[2].innerText === 'x') {
-        console.log('cross wins');
+        winner(0, 1, 2);
     } else if (squares[3].innerText === 'x' && squares[4].innerText === 'x' && squares[5].innerText === 'x') {
-        console.log('cross wins');
+        winner(3, 4, 5);
     } else if (squares[6].innerText === 'x' && squares[7].innerText === 'x' && squares[8].innerText === 'x') {
-        console.log('cross wins');
+        winner(6, 7, 8);
     } else if (squares[1].innerText === 'x' && squares[4].innerText === 'x' && squares[7].innerText === 'x') {
-        console.log('cross wins');
+        winner(1, 4, 7);
     } else if (squares[2].innerText === 'x' && squares[5].innerText === 'x' && squares[8].innerText === 'x') {
-        console.log('cross wins');
+        winner(2, 5, 8);
     } else if (squares[0].innerText === 'x' && squares[4].innerText === 'x' && squares[8].innerText === 'x') {
-        console.log('cross wins');
+        winner(0, 4, 8);
     } else if (squares[2].innerText === 'x' && squares[4].innerText === 'x' && squares[6].innerText === 'x') {
-        console.log('cross wins');
+        winner(2, 4, 6);
     } else if (squares[0].innerText === 'o' && squares[1].innerText === 'o' && squares[2].innerText === 'o') {
-        console.log('circle wins');
+        winner(0, 1, 2);
     } else if (squares[3].innerText === 'o' && squares[4].innerText === 'o' && squares[5].innerText === 'o') {
-        console.log('circle wins');
+        winner(3, 4, 5);
     } else if (squares[6].innerText === 'o' && squares[7].innerText === 'o' && squares[8].innerText === 'o') {
-        console.log('circle wins');
+        winner(6, 7, 8);
     } else if (squares[1].innerText === 'o' && squares[4].innerText === 'o' && squares[7].innerText === 'o') {
-        console.log('circle wins');
+        winner(1, 4, 7);
     } else if (squares[2].innerText === 'o' && squares[5].innerText === 'o' && squares[8].innerText === 'o') {
-        console.log('circle wins');
+        winner(2, 5, 8);
     } else if (squares[0].innerText === 'o' && squares[4].innerText === 'o' && squares[8].innerText === 'o') {
-        console.log('circle wins');
+        winner(0, 4, 8);
     } else if (squares[2].innerText === 'o' && squares[4].innerText === 'o' && squares[6].innerText === 'o') {
-        console.log('circle wins');
+        winner(2, 4, 6);
     }
+}
 
+const winner = (square1, square2, square3) => {
+    squares[square1].style.color = 'green';
+    squares[square2].style.color = 'green';
+    squares[square3].style.color = 'green';
 }
 
 squares.forEach(square => {
