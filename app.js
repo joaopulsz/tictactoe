@@ -55,3 +55,5 @@ squares.forEach(square => {
         this.removeEventListener('click', handler);
     });
 })
+
+//test
