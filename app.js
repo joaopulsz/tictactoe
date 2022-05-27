@@ -6,8 +6,11 @@ const versusButton = document.querySelector('#vs');
 
 let lastMove = 'x';
 
+let gameOver = false;
+
 const checkWinner = () => {
   const endGame = (square1, square2, square3) => {
+    gameOver = true;
     squares[square1].style.color = 'green';
     squares[square2].style.color = 'green';
     squares[square3].style.color = 'green';
@@ -50,52 +53,58 @@ const checkWinner = () => {
 
 
 const singlePlayerGame = () => {
+  versusButton.disabled = true;
+  gameOver = false;
+
   const computerMove = () => {
     const randomSquare = Math.floor(Math.random() * 9);
 
-    if (squares[randomSquare].innerText) {
-      computerMove();
-    } else {
+    if (!squares[randomSquare].innerText && gameOver === false) {
       squares[randomSquare].innerText = 'x';
+    } else {
+      computerMove();
     }
     checkWinner();
   };
 
   const playerMove = (square) => {
-    if (!square.innerText) {
+    if (!square.innerText && gameOver === false) {
       square.innerText = 'o';
+      checkWinner();
       computerMove();
     }
-    checkWinner();
   };
 
   squares.forEach(square => {
     square.addEventListener('click', () => {
-        playerMove(square);
-      });
-    })
+      playerMove(square);
+    });
+  })
 
 }
 
 const versusGame = () => {
+  singlePlayerButton.disabled = true;
+  gameOver = false;
+
   const makeAMove = (square) => {
 
-      if (lastMove === 'x') {
-        square.innerText = 'o';
-        lastMove = 'o';
-      } else if (lastMove === 'o') {
-        square.innerText = 'x';
-        lastMove = 'x';
-      }
-      checkWinner();
+    if (lastMove === 'x' && gameOver === false) {
+      square.innerText = 'o';
+      lastMove = 'o';
+    } else if (lastMove === 'o' && gameOver === false) {
+      square.innerText = 'x';
+      lastMove = 'x';
     }
+    checkWinner();
+  }
 
-    squares.forEach(square => {
-      square.addEventListener('click', function handler() {
-          makeAMove(square);
-          this.removeEventListener('click', handler);
-        });
-      })
+  squares.forEach(square => {
+    square.addEventListener('click', function handler() {
+      makeAMove(square);
+      this.removeEventListener('click', handler);
+    });
+  })
 }
 
 
@@ -108,9 +117,9 @@ singlePlayerButton.addEventListener('click', () => {
 })
 
 versusButton.addEventListener('click', () => {
-    squares.forEach(square => {
-      square.innerText = ''
-      square.style.color = 'black'
-    });
-    versusGame();
+  squares.forEach(square => {
+    square.innerText = ''
+    square.style.color = 'black'
+  });
+  versusGame();
 });
